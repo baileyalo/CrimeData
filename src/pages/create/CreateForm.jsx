@@ -89,17 +89,16 @@ function CreateForm() {
       });
   };
 
-  
-  const getUnsolved = () => {
-    if (crimes > 0){
-      const uSolved = crimes-sCrimes;
-      console.log("uSolved", uSolved)
-      setUCrimes(uSolved);
-    }else {
-      return null
-    }
- 
-  };
+  // const getUnsolved = () => {
+  //   if (crimes > 0){
+  //     const uSolved = crimes-sCrimes;
+  //     console.log("uSolved", uSolved)
+  //     setUCrimes(uSolved);
+  //   }else {
+  //     return null
+  //   }
+
+  // };
   const getHighFatalities = () => {
     if (fatalities > num) {
       return true;
@@ -115,14 +114,13 @@ function CreateForm() {
   };
 
   useEffect(() => {
-      getUnsolved(); 
+    // getUnsolved();
     getHighFatalities();
     getTotal();
   }, []);
   return (
     <>
       <ToastContainer autoClose={4000} />
-
       <div className="form-container">
         <form className="bg-slate-200">
           <label>
@@ -147,7 +145,7 @@ function CreateForm() {
                 className="bg-default border outline-none w-[250px] h-[30px] rounded-[14px] focus:border-primary focus:ring-2 focus:ring-primary pl-4 mb-2"
                 type="text"
                 name="Parish"
-                ref={inputRef} 
+                ref={inputRef}
                 onChange={(e) => setParish(e.target.value)}
                 required
               />
@@ -156,7 +154,7 @@ function CreateForm() {
                 className="bg-default border outline-none w-[250px] h-[30px] rounded-[14px] focus:border-primary focus:ring-2 focus:ring-primary pl-4 mb-2"
                 type="text"
                 name="Mayor"
-                ref={inputRef} 
+                ref={inputRef}
                 onChange={(e) => setMayor(e.target.value)}
                 required
               />
@@ -166,7 +164,7 @@ function CreateForm() {
                 className="bg-default border outline-none w-[250px] h-[30px] rounded-[14px] focus:border-primary focus:ring-2 focus:ring-primary pl-4 mb-2"
                 type="text"
                 name="Town"
-                ref={inputRef} 
+                ref={inputRef}
                 onChange={(e) => setTown(e.target.value)}
               />
             </div>
@@ -182,7 +180,7 @@ function CreateForm() {
                 className="bg-default border outline-none w-[200px] h-[30px] rounded-[14px] focus:border-primary focus:ring-2 focus:ring-primary pl-4 mb-2"
                 type="number"
                 name="crimes"
-                ref={inputRef} 
+                ref={inputRef}
                 onChange={(e) => setCrimes(e.target.value)}
                 required
               />
@@ -191,7 +189,7 @@ function CreateForm() {
                 name="fatalities"
                 className="bg-default border outline-none w-[200px] h-[30px] rounded-[14px] focus:border-primary focus:ring-2 focus:ring-primary pl-4 mb-2"
                 type="number"
-                ref={inputRef} 
+                ref={inputRef}
                 onChange={(e) => setFatalities(e.target.value)}
               />
 
@@ -200,22 +198,22 @@ function CreateForm() {
                 className="bg-default border outline-none w-[200px] h-[30px] rounded-[14px] focus:border-primary focus:ring-2 focus:ring-primary pl-4 mb-2"
                 type="number"
                 name="sCrimes"
-                ref={inputRef} 
+                ref={inputRef}
                 onChange={(e) => setSCrimes(e.target.value)}
               />
-              {/* <label className="font-bold text-2xl">Unsolved crimes:</label>
+              <label className="font-bold text-2xl">Unsolved crimes:</label>
               <input
-                className="w-10 h-5 focus:ring-2 focus:ring-primary gap-2"
+                className="bg-default border outline-none w-[100px] h-[30px] rounded-[14px] focus:border-primary focus:ring-2 focus:ring-primary pl-4 mb-2"
                 type="number"
                 name="uCrimes"
                 onChange={(e) => setUCrimes(e.target.value)}
-              /> */}
+              />
               <label className="font-bold text-2xl">Money spent:</label>
               <input
                 className="bg-default border outline-none w-[150px] h-[30px] rounded-[14px] focus:border-primary focus:ring-2 focus:ring-primary pl-4 mb-2"
                 type="number"
                 name="money"
-                ref={inputRef} 
+                ref={inputRef}
                 onChange={(e) => setMoney(e.target.value)}
               />
             </div>
@@ -248,7 +246,7 @@ function CreateForm() {
               name="notes"
               cols="30"
               rows="10"
-              ref={inputRef} 
+              ref={inputRef}
               onChange={(e) => setNotes(e.target.value)}
             ></textarea>
           </label>
