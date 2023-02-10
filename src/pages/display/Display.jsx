@@ -21,18 +21,18 @@ function Display() {
           <thead>
             <tr>
               {/* <th className="">ID</th> */}
-              <th className="">User</th>
+              <th className="pl-5">User</th>
               <th className="p-1 px-6">Crimes</th>
-              <th className="p-1">Parish</th>
-              <th className="p-1">Mayor</th>
-              <th className="p-1">Town</th>
+              <th className="p-1 px-4">Parish</th>
+              <th className="p-1 px-4">Mayor</th>
+              <th className="p-1 px-4">Town</th>
               <th className="p-1">Fatalities</th>
-              <th className="p-1">Solved crimes</th>
+              <th className="p-1 px-4">Solved crimes</th>
               <th className="p-1 px-6">Unsolved crimes</th>
               <th className="p-1 px-6">Money spent</th>
               <th className="p-1 px-6">Total</th>
               <th className="p-1 px-6">High fatalities</th>
-              <th className="p-1 px-6">Notes</th>
+              <th className="p-1 px-12">Notes</th>
             </tr>
           </thead>
           <tbody>

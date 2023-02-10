@@ -1,4 +1,4 @@
-import { useState, useEffect, useId } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./Create.css";
 import { toast, ToastContainer } from "react-toastify";
 import nextId from "react-id-generator";
@@ -24,22 +24,6 @@ function CreateForm() {
   const [notes, setNotes] = useState("");
   const id = nextId();
 
-  const getUnsolved = () => {
-    const uSolved = crimes - sCrimes;
-    setUCrimes(uSolved);
-  };
-  const getHighFatalities = () => {
-    if (fatalities > num) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
-  const getTotal = () => {
-    const sum = crimes + fatalities + sCrimes + uCrimes;
-    setTotal(sum);
-  };
   // const removeNewLineNotBookText = (str) => {
   //   str = str.toString();
   //   str = str.replace(/\r?\n|\r/g, "");
@@ -76,6 +60,18 @@ function CreateForm() {
 
     postData(data);
   };
+  const resetInput = () => {
+    // setParish("");
+    // setMayor("");
+    // setTown("");
+    // setFatalities("");
+    // setSCrimes("");
+    // setNotes("");
+    // setMoney("");
+    inputRef.current.value = null;
+  };
+
+  const inputRef = useRef(null);
 
   const postData = (data) => {
     fetch("https://crime-stat-server.onrender.com/crimes", {
@@ -85,27 +81,50 @@ function CreateForm() {
     })
       .then((response) => response.json())
       .then((data) => {
-        const notify = () => toast.success("Successfull!!!");
-        notify();
+        toast.success("Statistics Successfully uploaded!!!");
+        resetInput();
       })
       .catch((error) => {
         toast.error("Error:", error);
       });
   };
 
-  useEffect(() => {
-    if (crimes) {
-      getUnsolved();
-      getHighFatalities();
-      getTotal();
+  
+  const getUnsolved = () => {
+    if (crimes > 0){
+      const uSolved = crimes-sCrimes;
+      console.log("uSolved", uSolved)
+      setUCrimes(uSolved);
+    }else {
+      return null
     }
+ 
+  };
+  const getHighFatalities = () => {
+    if (fatalities > num) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const getTotal = () => {
+    const sum = crimes + fatalities + sCrimes + uCrimes;
+    setTotal(sum);
+    console.log(total);
+  };
+
+  useEffect(() => {
+      getUnsolved(); 
+    getHighFatalities();
+    getTotal();
   }, []);
   return (
     <>
       <ToastContainer autoClose={4000} />
 
       <div className="form-container">
-        <form onSubmit={handleSubmit} className="bg-slate-200">
+        <form className="bg-slate-200">
           <label>
             <select
               className="select w-full max-w-xs "
@@ -125,26 +144,29 @@ function CreateForm() {
             <div className="mb-5">
               <label className="font-bold text-2xl">Parish:</label>
               <input
-                className="w-40 h-5 focus:ring-2 focus:ring-primary"
+                className="bg-default border outline-none w-[250px] h-[30px] rounded-[14px] focus:border-primary focus:ring-2 focus:ring-primary pl-4 mb-2"
                 type="text"
                 name="Parish"
+                ref={inputRef} 
                 onChange={(e) => setParish(e.target.value)}
                 required
               />
               <label className="font-bold text-2xl ">Mayor:</label>
               <input
-                className="w-40 h-5 focus:ring-2 focus:ring-primary gap-2"
+                className="bg-default border outline-none w-[250px] h-[30px] rounded-[14px] focus:border-primary focus:ring-2 focus:ring-primary pl-4 mb-2"
                 type="text"
                 name="Mayor"
+                ref={inputRef} 
                 onChange={(e) => setMayor(e.target.value)}
                 required
               />
 
               <label className="font-bold text-2xl ">Major Town:</label>
               <input
-                className="w-40 h-5 focus:ring-2 focus:ring-primary gap-2"
+                className="bg-default border outline-none w-[250px] h-[30px] rounded-[14px] focus:border-primary focus:ring-2 focus:ring-primary pl-4 mb-2"
                 type="text"
                 name="Town"
+                ref={inputRef} 
                 onChange={(e) => setTown(e.target.value)}
               />
             </div>
@@ -157,25 +179,28 @@ function CreateForm() {
             <div className="mb-5 mt-5">
               <label className="font-bold text-2xl">Commited crimes:</label>
               <input
-                className="w-10 h-5 focus:ring-2 focus:ring-primary gap-2"
+                className="bg-default border outline-none w-[200px] h-[30px] rounded-[14px] focus:border-primary focus:ring-2 focus:ring-primary pl-4 mb-2"
                 type="number"
                 name="crimes"
+                ref={inputRef} 
                 onChange={(e) => setCrimes(e.target.value)}
                 required
               />
               <label className="font-bold text-2xl">Fatalities:</label>
               <input
                 name="fatalities"
-                className="w-10 h-5 focus:ring-2 focus:ring-primary gap-2"
+                className="bg-default border outline-none w-[200px] h-[30px] rounded-[14px] focus:border-primary focus:ring-2 focus:ring-primary pl-4 mb-2"
                 type="number"
+                ref={inputRef} 
                 onChange={(e) => setFatalities(e.target.value)}
               />
 
               <label className="font-bold text-2xl">Solved crimes:</label>
               <input
-                className="w-10 h-5 focus:ring-2 focus:ring-primary gap-2"
+                className="bg-default border outline-none w-[200px] h-[30px] rounded-[14px] focus:border-primary focus:ring-2 focus:ring-primary pl-4 mb-2"
                 type="number"
                 name="sCrimes"
+                ref={inputRef} 
                 onChange={(e) => setSCrimes(e.target.value)}
               />
               {/* <label className="font-bold text-2xl">Unsolved crimes:</label>
@@ -187,9 +212,10 @@ function CreateForm() {
               /> */}
               <label className="font-bold text-2xl">Money spent:</label>
               <input
-                className="w-15 h-5 focus:ring-2 focus:ring-primary gap-2"
+                className="bg-default border outline-none w-[150px] h-[30px] rounded-[14px] focus:border-primary focus:ring-2 focus:ring-primary pl-4 mb-2"
                 type="number"
                 name="money"
+                ref={inputRef} 
                 onChange={(e) => setMoney(e.target.value)}
               />
             </div>
@@ -216,12 +242,13 @@ function CreateForm() {
           </label> */}
 
           <label className="w-full">
-            <h3 className="text-2xl">Notes: </h3>
+            <h3 className="font-bold text-2xl">Notes: </h3>
             <textarea
               className="w-full"
               name="notes"
               cols="30"
               rows="10"
+              ref={inputRef} 
               onChange={(e) => setNotes(e.target.value)}
             ></textarea>
           </label>
@@ -239,7 +266,7 @@ function CreateForm() {
           </label> */}
 
           <button
-            type="submit"
+            onClick={handleSubmit}
             className="button button-bg-disabled hover:bg-primary "
           >
             Submit

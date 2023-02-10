@@ -26,7 +26,7 @@ function Crime(props) {
   }
   return (
     <tr className='hover'>
-      <th className='text-center m-0'>{id}</th>
+      {/* <th className='text-center m-0'>{id}</th> */}
     
       <td className='text-center'>{user}</td>
       <td className='text-center'>{crimes}</td>
@@ -36,7 +36,7 @@ function Crime(props) {
       <td className='text-center'>{fatalities}</td>
       <td className='text-center'>{sCrimes}</td>
       <td className='text-center'>{uCrimes}</td>
-      <td className='text-center'>{money}</td>
+      <td className='text-center'>${money}</td>
       <td className='text-center'>{total}</td>
       <td className='text-center'>{highFatalities}</td>
       <td className='text-center'>{notes}</td>
