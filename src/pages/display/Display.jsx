@@ -5,7 +5,7 @@ function Display() {
   const [crime, setCrime] = useState([])
   
   useEffect(()=>{
-    fetch("http://localhost:3000/crimes")
+    fetch("https://crime-stat-server.onrender.com/crimes")
     .then(res => res.json())
     .then(data => setCrime(data))
     console.log(crime)
@@ -20,7 +20,7 @@ function Display() {
           {/* <!-- head --> */}
           <thead>
             <tr>
-              <th className="">ID</th>
+              {/* <th className="">ID</th> */}
               <th className="">User</th>
               <th className="p-1 px-6">Crimes</th>
               <th className="p-1">Parish</th>

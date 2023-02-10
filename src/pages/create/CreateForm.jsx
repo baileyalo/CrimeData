@@ -78,7 +78,7 @@ function CreateForm() {
   };
 
   const postData = (data) => {
-    fetch("http://localhost:3000/crimes", {
+    fetch("https://crime-stat-server.onrender.com/crimes", {
       method: "POST", // or 'PUT'
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),

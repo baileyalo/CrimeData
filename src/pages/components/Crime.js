@@ -7,7 +7,7 @@ function Crime(props) {
   console.log(props.crime);
 
   const fetchDelete = (id) =>{
-    fetch(`http://localhost:3000/crimes/${id}`, {
+    fetch(`https://crime-stat-server.onrender.com/crimes/${id}`, {
       method: 'DELETE',
     })
     .then(res => res.json()) // or res.json()

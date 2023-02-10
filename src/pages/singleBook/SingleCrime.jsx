@@ -6,7 +6,7 @@ function SingleCrime() {
   const {id} = useParams()
   const [crime, setCrime] = useState({})
   useEffect(()=>{
-    fetch(`http://localhost:8000/crimes/${id}`)
+    fetch(`https://crime-stat-server.onrender.com/crimes/${id}`)
     .then(res => res.json())
     .then(data => setCrime(data))
   },[id])
