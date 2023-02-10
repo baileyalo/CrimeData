@@ -1,0 +1,36 @@
+
+/* create form */
+.form-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* background-color: aqua; */
+  /* height: 100vh; */
+}
+form{
+  /* padding: 4rem; */
+  display: flex;
+  /* align-items: center; */
+  flex-direction: column;
+  padding: 2rem;
+}
+label{
+  /* padding: 1rem 10rem; */
+  /* background-color: aquamarine; */
+  margin: .5rem;
+}
+label span{
+  font-size: 20px;
+  margin: 0px 1rem;
+}
+input[type=text]{
+  border: 2px solid black;
+
+}
+select{
+  padding: 6px;
+  /* background-color: aqua; */
+  border: 1px solid black;
+  width: 200px;
+}
